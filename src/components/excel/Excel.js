@@ -1,18 +1,24 @@
+import {$} from '@core/dom';
+
 export class Excel {
     constructor(selector, options) {
-        this.$el = document.querySelector(selector);
+        this.$el = $(selector);
         this.components = options.components || [];
     }
 
     getRoot() {
-        const $root = document.createElement('div')
-        $root.classList.add('excel')
+        const $root = $.create('div', 'excel')
 
-        this.components.forEach(Component => {
-            const $el = document.createElement('div')
+        this.components = this.components.map(Component => {
+            const $el = $.create('div', Component.className)
             const component = new Component($el)
-            console.log(component.toHTML())
-            $root.insertAdjacentHTML('beforeend', component.toHTML())
+            $el.html(component.toHTML())
+
+            if(component.name){
+                window['c' + component.name] = component
+            }
+            $root.append($el)
+            return component
         })
 
         return $root
@@ -20,5 +26,7 @@ export class Excel {
 
     render() {
         this.$el.append(this.getRoot())
+
+        this.components.forEach(Component => Component.init())
     }
 }

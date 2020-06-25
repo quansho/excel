@@ -13,7 +13,10 @@
     "require-jsdoc": "off",
     "no-trailing-spaces": "off",
     "indent": "off",
-    "eol-last": "off"
+    "eol-last": "off",
+    "operator-linebreak": "off",
+    "space-before-blocks": "off",
+    "keyword-spacing": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
