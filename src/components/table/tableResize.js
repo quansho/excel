@@ -13,8 +13,6 @@ export function resizeHandler($root, event) {
         [sideProp]: '-5000px'
     })
 
-
-    console.log($parent.data.col)
     document.onmousemove = e => {
         if(resizeType === 'col'){
             const delta = e.pageX - cords.right
@@ -25,7 +23,6 @@ export function resizeHandler($root, event) {
             $resizer.css({bottom: -delta + 'px'})
             value = cords.height + delta
         }
-        // console.log(delta)
     }
 
     document.onmouseup = e =>{
