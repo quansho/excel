@@ -6,7 +6,6 @@ export class Toolbar extends ExcelComponent {
     constructor($root, options) {
         super($root, {
            name: 'Toolbar',
-           listeners: ['click'],
             ...options
         });
     }
@@ -34,6 +33,4 @@ export class Toolbar extends ExcelComponent {
         </div>
         `
     }
-
-    onClick(event){}
 }
