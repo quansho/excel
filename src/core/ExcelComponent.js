@@ -5,8 +5,11 @@ export class ExcelComponent extends DomListener {
         super($root, options.listeners);
         this.name = options.name || ''
         this.emitter = options.emitter
+        this.subscribe = options.subscribe || []
         this.prepare()
+        this.store = options.store
         this.unsubscribers = []
+        this.storeSub = null
     }
 
     // настраиваем копонент до Init
@@ -25,6 +28,16 @@ export class ExcelComponent extends DomListener {
         this.unsubscribers.push(unsab)
     }
 
+    $dispatch(action){
+        this.store.dispatch(action)
+    }
+
+    storeChanged(){}
+
+    isWatching(key){
+        return this.subscribe.includes(key)
+    }
+
     // Инициализируем компанент
     // Добавляем DOM слушателей
     init(){
@@ -36,5 +49,6 @@ export class ExcelComponent extends DomListener {
     destroy(){
         this.removeDomListeners()
         this.unsubscribers.forEach( unsab => unsab())
+        this.storeSub.unsubscribe()
     }
 }
