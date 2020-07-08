@@ -1,0 +1,48 @@
+import {
+    CHANGE_HEADER_TITLE,
+    CHANGE_TEXT,
+    TABLE_RESIZE,
+    CHANGE_STYLES, APPLY_STYLES
+} from './types';
+
+export function rootReducer(state, action) {
+    let field
+    let val
+    switch (action.type) {
+        case TABLE_RESIZE:
+            field = action.data.resizeType === 'col' ? 'colState' : 'rowState'
+            return {...state, [field]: value(state, field, action)}
+        case CHANGE_TEXT:
+            field = 'dataState'
+            return {
+                ...state,
+                [field]: action.data.value,
+                dataState: value(state, field, action)
+            }
+        case CHANGE_HEADER_TITLE:
+            field = 'tableTitle'
+            return {...state, [field]: action.data.value}
+        case CHANGE_STYLES:
+            return {...state, currentStyles: action.data}
+        case APPLY_STYLES:
+            field = 'stylesState'
+            val = state[field] || {}
+
+            action.data.ids.forEach(id=>{
+                val[id] = {...val[id], ...action.data.value}
+            })
+
+            return {
+                ...state,
+                [field]: val,
+                currentStyles: {...state.currentStyles, ...action.data.value}
+            }
+    }
+    return JSON.parse(JSON.stringify(state))
+}
+
+function value(state, field, action) {
+    const val = state[field] || {}
+    val[action.data.id] = action.data.value
+    return val
+}

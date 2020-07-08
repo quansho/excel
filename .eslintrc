@@ -16,7 +16,8 @@
     "eol-last": "off",
     "operator-linebreak": "off",
     "space-before-blocks": "off",
-    "keyword-spacing": "off"
+    "keyword-spacing": "off",
+    "no-case-declarations": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
