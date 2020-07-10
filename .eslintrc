@@ -3,7 +3,8 @@
   "env": {
     "es6": true,
     "node": true,
-    "browser": true
+    "browser": true,
+    "jest/globals": true
   },
   "rules": {
     "semi": "off",
@@ -19,5 +20,6 @@
     "keyword-spacing": "off",
     "no-case-declarations": "off"
   },
+  "plugins": ["jest"],
   "extends": ["eslint:recommended", "google"]
 }
