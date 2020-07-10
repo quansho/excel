@@ -9,7 +9,7 @@ export class ExcelComponent extends DomListener {
         this.prepare()
         this.store = options.store
         this.unsubscribers = []
-        this.storeSub = null
+        // this.storeSub = null
     }
 
     // настраиваем копонент до Init
@@ -49,6 +49,6 @@ export class ExcelComponent extends DomListener {
     destroy(){
         this.removeDomListeners()
         this.unsubscribers.forEach( unsab => unsab())
-        this.storeSub.unsubscribe()
+        // this.storeSub.unsubscribe()
     }
 }
