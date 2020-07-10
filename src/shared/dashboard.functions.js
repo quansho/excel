@@ -3,7 +3,6 @@ import {storage} from '@core/utils';
 function toHtml(key) {
     const model = storage(key)
     const url = key.split(':')[1]
-    console.log(url)
     return `
      <li class="db__record">
             <a href="/#excel/${url}">${model.tableTitle}</a>
