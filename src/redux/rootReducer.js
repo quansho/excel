@@ -4,6 +4,7 @@ import {
     TABLE_RESIZE,
     CHANGE_STYLES, APPLY_STYLES
 } from './types';
+import {UPDATE_DATE} from '@/redux/types';
 
 export function rootReducer(state, action) {
     let field
@@ -37,6 +38,8 @@ export function rootReducer(state, action) {
                 [field]: val,
                 currentStyles: {...state.currentStyles, ...action.data.value}
             }
+        case UPDATE_DATE:
+            return {...state, openedIn: new Date().toJSON()}
     }
     return JSON.parse(JSON.stringify(state))
 }
